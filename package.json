@@ -1,0 +1,15 @@
+{
+  "name": "sample-playwright-framework",
+  "version": "1.0.0",
+  "description": "automated testing with playwright",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasylshlapaks/playwright-sample.git"
+  },
+  "dependencies": {
+    "@playwright/test": "1.24.0"
+  }
+}
