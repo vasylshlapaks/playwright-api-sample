@@ -2,7 +2,7 @@ import { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   use: {
-    baseURL: 'https://reqres.in/',
+    baseURL: 'http://restapi.adequateshop.com',
     extraHTTPHeaders: {
       'Accept': 'application/json',
     },

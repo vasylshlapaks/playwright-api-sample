@@ -1,22 +1,28 @@
-import { test, expect } from '@playwright/test';
-import {addUser, getUsersList} from "../helpers/api/helpers";
+import {test, expect} from '../fixtures/baseFixture';
+import {userForLogin} from "../testData/text/users";
+import {getRandomEmail} from "../helpers/utils";
 
-test.describe('GET and POST requests example', () => {
-  test('Test ability to get request', async ({}) => {
-    const emailOfUser = 'george.edwards@reqres.in';
-    const usersList = await getUsersList();
+test('Checks user data fetching', async ({authorizedRequest}) => {
+  const userData = await authorizedRequest.get(`/api/users/${userForLogin.id}`);
 
-    await expect(usersList).toContain(emailOfUser);
+  expect(userData.ok()).toBeTruthy();
+  expect(await userData.json()).toHaveProperty('id', userForLogin.id);
+  expect(await userData.json()).toHaveProperty('email', userForLogin.email);
+});
+
+test('Checks user registration', async ({ request }) => {
+  const newEmail = getRandomEmail();
+
+  const registeredUser = await request.post(`api/authaccount/registration`, {
+    data: {
+      "name": userForLogin.name,
+      "email": newEmail,
+      "password": userForLogin.password
+    }
   });
 
-  test.skip('Test ability to post request', async ({}) => {
-    const user = {
-      name: 'test',
-      job: 'qa'
-    };
-    const newUser = await addUser(user);
-
-    await expect(newUser).toContain(user.name);
-    await expect(newUser).toContain(user.job);
-  });
+  expect(registeredUser.ok()).toBeTruthy();
+  expect(await registeredUser.json()).toHaveProperty('message', 'success');
+  expect(await registeredUser.json()).toHaveProperty('data.Name', userForLogin.name);
+  expect(await registeredUser.json()).toHaveProperty('data.Email', newEmail);
 });

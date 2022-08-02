@@ -1,4 +1,4 @@
-import moment = require("moment");
+const moment = require("moment");
 
 export const getRandomString = (text: string) => {
   const number = Math.round(Math.random() * 10000);
@@ -16,7 +16,7 @@ export const getRandomArrayElement = (array) => {
 
 export const getRandomEmail = () => {
   const randomPrefix = getRandomString('email');
-  return `${randomPrefix}@altyuitests4.mail7.io`
+  return `${randomPrefix}@gmail.mail7.io`
 };
 
 export const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
