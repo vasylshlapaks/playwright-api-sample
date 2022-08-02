@@ -10,11 +10,11 @@ Clone the repository
 Run `npm install` in root folder to install dependencies
 
 #### Configuration
-Add `.env` file with secrets for users/wallets to root folder of project
+Add `.env` file with secrets for users/wallets to root folder of project if needed
 
 #### Run a single test file
 
-npx playwright test apiCallsExample.spec.ts
+npx playwright test registerUser.spec.ts
 
 #### Run all tests
 
